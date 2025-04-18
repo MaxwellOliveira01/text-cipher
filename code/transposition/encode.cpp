@@ -1,11 +1,13 @@
 #include <bits/stdc++.h>
+#include "../util/constants.cpp"
+
 using namespace std;
 
 vector<int> get_key_permutation(string key) {
     string sorted_key = key;
     sort(sorted_key.begin(), sorted_key.end());
     
-    map<char, int> ordered_pos; // posicao da letra na chave ordenada
+    map<char, int> ordered_pos;
 
     for(int i = 0; i < (int)sorted_key.size(); i++) {
         ordered_pos[sorted_key[i]] = i;
@@ -34,13 +36,10 @@ string apply_permutation(string M, vector<int> p) {
 }
 
 string transposition_cipher(string M, string keyStr) {
-
     auto p = get_key_permutation(keyStr);
-
     while((int)M.size() % (int)keyStr.size() != 0) {
-        M += '*';
+        M += PADDING;
     }
-
     return apply_permutation(M, p);
 }
 
