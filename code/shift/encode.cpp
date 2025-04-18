@@ -6,7 +6,7 @@ using namespace std;
 string shift_cypher(string M, int shift) {
     string result = M;
     
-    shift = (shift + ALPHABET_SIZE) % ALPHABET_SIZE; // ensure shift > 0
+    shift = (shift % ALPHABET_SIZE + ALPHABET_SIZE) % ALPHABET_SIZE; // ensure shift > 0
 
     for(auto &c : result) {
         if(c >= 'a' && c <= 'z') {

@@ -2,11 +2,11 @@
 
 #include "../util/util.cpp"
 #include "../util/constants.cpp"
-#include "../util/decypher_analysis_util.cpp"
+#include "../util/frequency_analysis_util.cpp"
 
 using namespace std;
 
-string decypher_brute(string s) {
+string brute_decode(string s) {
     int bestScore = 0;
     int bestScoreAt = 0;
 
@@ -27,7 +27,7 @@ string decypher_brute(string s) {
 
 }
 
-string decypher_analysis(string s) {
+string analysis_decode(string s) {
     auto freq = get_frequency_data();
 
     int bestScore = 0;
@@ -57,11 +57,11 @@ int main() {
 
     S = to_lower(S);
 
-    auto result = decypher_brute(S);
+    auto result = brute_decode(S);
     cout << "Resultado com força bruta:\n" << result << "\n";
 
     cout << "\n";
 
-    auto rfreq = decypher_analysis(S);
+    auto rfreq = analysis_decode(S);
     cout << "Resultado com analise de frequencia:\n" << rfreq << "\n";
 }
