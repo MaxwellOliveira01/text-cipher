@@ -1,18 +1,18 @@
 #include <bits/stdc++.h>
+
 #include "../util/util.cpp"
+#include "../util/constants.cpp"
 #include "../util/decypher_analysis_util.cpp"
 
 using namespace std;
 
 string decypher_brute(string s) {
-    int alphabetSize = 26;
-    
     int bestScore = 0;
     int bestScoreAt = 0;
 
     auto words = parse_raw_words(read_words());
 
-    for(int shift = 0; shift < alphabetSize; shift++) {
+    for(int shift = 0; shift < ALPHABET_SIZE; shift++) {
         auto r = get_score(s, words);
         if(r > bestScore) {
             bestScore = r;
@@ -28,15 +28,14 @@ string decypher_brute(string s) {
 }
 
 string decypher_analysis(string s) {
-    int alphabetSize = 26;
-    auto freq = getFrequencyData();
+    auto freq = get_frequency_data();
 
     int bestScore = 0;
     int bestScoreAt = 0;
 
-    for(int shift = 0; shift < alphabetSize; shift++) {
-        auto r = getStringFreq(s);
-        int score = getFreqScore(r, freq);
+    for(int shift = 0; shift < ALPHABET_SIZE; shift++) {
+        auto r = get_string_freq(s);
+        int score = get_freq_score(r, freq);
 
         if(score > bestScore) {
             bestScore = score;

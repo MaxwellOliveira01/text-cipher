@@ -1,25 +1,22 @@
 #include <bits/stdc++.h>
+#include "../util/constants.cpp"
+
 using namespace std;
 
 string shift_cypher(string M, int shift) {
-
-    int alphabetSize = 26;
-    shift = (shift + alphabetSize) % alphabetSize; // garante que o deslocamento seja positivo
-    shift %= alphabetSize; // nao faz sentido shiftar mais que isso
-
     string result = M;
+    
+    shift = (shift + ALPHABET_SIZE) % ALPHABET_SIZE; // ensure shift > 0
 
     for(auto &c : result) {
-        // shifta apenas letras
         if(c >= 'a' && c <= 'z') {
-            c = (c - 'a' + shift) % 26 + 'a';
+            c = (c - 'a' + shift) % ALPHABET_SIZE + 'a';
         } else if(c >= 'A' && c <= 'Z') {
-            c = (c - 'A' + shift) % 26 + 'A';
+            c = (c - 'A' + shift) % ALPHABET_SIZE + 'A';
         }
     }
 
     return result;
-
 }
 
 int main() {

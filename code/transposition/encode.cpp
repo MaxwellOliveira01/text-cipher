@@ -2,37 +2,34 @@
 using namespace std;
 
 vector<int> get_key_permutation(string key) {
-    string t = key;
-    sort(t.begin(), t.end());
+    string sorted_key = key;
+    sort(sorted_key.begin(), sorted_key.end());
     
-    map<char, int> tpos; // posicao da letra na chave ordenada
+    map<char, int> ordered_pos; // posicao da letra na chave ordenada
 
-    for(int i = 0; i < (int)t.size(); i++) {
-        tpos[t[i]] = i;
+    for(int i = 0; i < (int)sorted_key.size(); i++) {
+        ordered_pos[sorted_key[i]] = i;
     }
 
-    vector<int> perm((int)key.size());
+    vector<int> permutation((int)key.size());
 
     for(int i = 0; i < (int)key.size(); i++) {
-        perm[i] = tpos[key[i]];
+        permutation[i] = ordered_pos[key[i]];
     }
 
-    return perm;
+    return permutation;
     
 }
 
 string apply_permutation(string M, vector<int> p) {
     for(int i = 0; i < (int)M.size(); i += (int)p.size()) {
-        string t = M.substr(i, (int)p.size());
-        string t2((int)p.size(), ' ');
-
+        string block = M.substr(i, (int)p.size());
+        string permutated_block((int)p.size(), ' ');
         for(int j = 0; j < (int)p.size(); j++) {
-            t2[j] = t[p[j]];
+            permutated_block[j] = block[p[j]];
         }
-
-        M.replace(i, (int)p.size(), t2);
+        M.replace(i, (int)p.size(), permutated_block);
     }
-
     return M;
 }
 
@@ -45,20 +42,6 @@ string transposition_cipher(string M, string keyStr) {
     }
 
     return apply_permutation(M, p);
-
-    // for(int i = 0; i < (int)M.size(); i += (int)p.size()) {
-    //     string t = M.substr(i, (int)p.size());
-    //     string t2((int)p.size(), ' ');
-
-    //     for(int j = 0; j < (int)p.size(); j++) {
-    //         t2[j] = t[p[j]];
-    //     }
-
-    //     M.replace(i, (int)p.size(), t2);
-    // }
-
-    return M;
-
 }
 
 string readKey() {
