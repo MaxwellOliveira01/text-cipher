@@ -4,11 +4,6 @@
 
 using namespace std;
 
-int getShiftScore(string& s, set<string>& words) {
-    vector<int> dp((int)s.size(), -1);
-    return score(0, s, dp, words);;
-}
-
 string decypher_brute(string s) {
     int alphabetSize = 26;
     
@@ -18,7 +13,7 @@ string decypher_brute(string s) {
     auto words = parse_raw_words(read_words());
 
     for(int shift = 0; shift < alphabetSize; shift++) {
-        auto r = getShiftScore(s, words);
+        auto r = get_score(s, words);
         if(r > bestScore) {
             bestScore = r;
             bestScoreAt = shift;
