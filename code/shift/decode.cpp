@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-#include "../util.cpp"
-#include "../decypher_analysis_util.cpp"
+#include "../util/util.cpp"
+#include "../util/decypher_analysis_util.cpp"
 
 using namespace std;
 

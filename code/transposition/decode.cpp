@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-#include "util.cpp"
-#include "constants.cpp"
+#include "../util/util.cpp"
+#include "../util/constants.cpp"
 
 using namespace std;
 

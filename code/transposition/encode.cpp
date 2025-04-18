@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> getKeyPermutation(string key) {
+vector<int> get_key_permutation(string key) {
     string t = key;
     sort(t.begin(), t.end());
     
@@ -38,7 +38,7 @@ string apply_permutation(string M, vector<int> p) {
 
 string transposition_cipher(string M, string keyStr) {
 
-    auto p = getKeyPermutation(keyStr);
+    auto p = get_key_permutation(keyStr);
 
     while((int)M.size() % (int)keyStr.size() != 0) {
         M += '*';
