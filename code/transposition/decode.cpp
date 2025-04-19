@@ -26,6 +26,11 @@ string decipher_brute(string M, set<string>& words) {
             // e simplesmente aplicar a permutação e calcular a score
 
             string msg = apply_permutation(M, p);
+
+            while(msg.back() == PADDING) {
+                msg.pop_back();
+            }
+            
             int score = get_score(msg, words);
 
             if(score > best_score) {

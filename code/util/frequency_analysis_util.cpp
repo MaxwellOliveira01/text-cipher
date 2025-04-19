@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-string frequency_data_file_path = "data/frequency.txt";
+string frequency_data_file_path = "../../data/frequency.txt";
 
 vector<char> get_frequency_data() {
     ifstream file(frequency_data_file_path);

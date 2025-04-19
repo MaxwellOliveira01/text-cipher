@@ -2,11 +2,11 @@
 using namespace std;
 
 vector<string> wordsPath = {
-    "data/nomes.txt",
-    "data/first-name-pt-br.txt",
-    "data/brazilian-soccer-teams.txt",
-    "data/br-utf8.txt",
-    "data/br-sem-acentos.txt",
+    "../../data/nomes.txt",
+    "../../data/first-name-pt-br.txt",
+    "../../data/brazilian-soccer-teams.txt",
+    "../../data/br-utf8.txt",
+    "../../data/br-sem-acentos.txt",
     // "data/biblic-words-pt-br.txt", --> acsa
 };
 
@@ -27,6 +27,8 @@ set<string> parse_raw_words(vector<string> rawWords) {
     for(auto &w : rawWords) if((int)w.size() > 2) {
         transform(w.begin(), w.end(), w.begin(), ::toupper);
         words.insert(w);
+        transform(w.begin(), w.end(), w.begin(), ::tolower);
+        words.insert(w);
     }
     return words;
 }
@@ -46,9 +48,11 @@ string apply_permutation(string M, vector<int> p) {
     return M;
 }
 
+const int INF = 1000000;
+
 int score(int i, string& s, vector<int>& dp, set<string>& words) {
     if(i >= (int)s.size()) {
-        return (i == (int)s.size() ? 0 : -1000000 /* inf */);
+        return (i == (int)s.size() ? 0 : -INF);
     }
 
     auto &ans = dp[i];
@@ -57,7 +61,9 @@ int score(int i, string& s, vector<int>& dp, set<string>& words) {
         return ans;
     }
 
-    ans = -100000 /* inf */;
+    ans = -INF;
+
+    // ans = score(i + 1, s, dp, words);
 
     string current_substring = "";
 
@@ -66,6 +72,7 @@ int score(int i, string& s, vector<int>& dp, set<string>& words) {
         if(words.count(current_substring)) {
             ans = max(ans, 1 + score(j + 1, s, dp, words));
         }
+        // ans = max(ans, score(j + 1, s, dp, words));
     }
 
     return ans;
