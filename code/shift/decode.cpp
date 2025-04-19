@@ -61,7 +61,6 @@ int main() {
     cout << "Resultado com força bruta:\n" << result << "\n";
 
     cout << "\n";
-
     auto rfreq = analysis_decode(S);
     cout << "Resultado com analise de frequencia:\n" << rfreq << "\n";
 }
