@@ -19,6 +19,12 @@ vector<int> get_key_permutation(string key) {
         permutation[i] = ordered_pos[key[i]];
     }
 
+    for(auto &c : permutation) {
+        cout << c << " ";
+    }
+
+    cout << "\n";
+
     return permutation;
     
 }
